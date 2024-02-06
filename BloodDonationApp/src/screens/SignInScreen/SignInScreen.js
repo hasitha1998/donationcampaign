@@ -10,8 +10,13 @@ const SignInScreen = () => {
   return (
     <View style={styles.root}>
       <Image source={Logo} style={styles.logo} resizeMode="contain" />
-      <CustomInput placeholder="Username" value={username} setValue={setUsername}/>
-      <CustomInput placeholder="Password" value={password} setValue={setPassword}/>
+      <CustomInput placeholder="Username" 
+      value={username}
+       setValue={setUsername}/>
+      <CustomInput placeholder="Password"
+       value={password} setValue={setPassword}
+        secureTextEntry={true}
+       />
     </View>
   );
 };
