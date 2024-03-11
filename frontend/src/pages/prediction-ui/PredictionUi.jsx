@@ -21,6 +21,7 @@ const PredictionForm = () => {
   const [formData, setFormData] = useState({
     month: 1, // Default to January
     day_type: 'public',
+    promotion_cost: '' // Add a field for promotion cost
   });
 
   const [prediction, setPrediction] = useState(null);
@@ -50,6 +51,7 @@ const PredictionForm = () => {
     setFormData({
       month: 1,
       day_type: 'public',
+      promotion_cost: ''
     });
     setPrediction(null);
   };
@@ -59,9 +61,9 @@ const PredictionForm = () => {
 
     
     <div className="max-w-xl ml-8 p-6 mt-[4rem] bg-white rounded-lg shadow-lg bg-gradient-to-b from-red-500 via-red-300 to-slate-50">
-    <p className="text-lg font-extrabold text-white justify-center text-center ">
+    {/* <p className="text-lg font-extrabold text-white justify-center text-center ">
     "In the canvas of life, organizing a blood donation camp is like painting strokes of kindness that color the world with hope and healing."
-</p>
+</p> */}
     <div className="max-w-xl  mt-[4rem] p-8 bg-white rounded-lg shadow-lg mb-7">
     
     
@@ -92,6 +94,16 @@ const PredictionForm = () => {
           <option value="weekday">Weekday</option>
           <option value="weekend">Weekend</option>
         </select>
+      </div>
+      <div className="mb-4">
+        <label htmlFor="promotionCost" className="block text-sm font-medium text-gray-700 mb-1">Promotion Cost:</label>
+        <input
+          type="number"
+          id="promotionCost"
+          className="form-input block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+          value={formData.promotion_cost}
+          onChange={(e) => handleFormDataChange('promotion_cost', e.target.value)}
+        />
       </div>
       <div className="flex space-x-4 ">
         <button

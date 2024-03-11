@@ -8,7 +8,12 @@ import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 //pages
 import{
 
-    PredictionUi
+
+    PredictionUi,
+    Home,
+    Organizer,
+    OrganizerSignup,
+    AllOrganizer
 }from "../pages"
 
 
@@ -19,7 +24,11 @@ const AppRoutes=() =>{
         <Router>
             <Routes>
                 {/* Public Routes */}
+            <Route path="/" element={<Home />} />
 						<Route path="/prediction" element={<PredictionUi />} />
+            <Route path="/organizer-login" element={<Organizer />} />
+            <Route path="/organizer-signup" element={<OrganizerSignup />} />
+            <Route path="/organizers" element={<AllOrganizer />} />
             </Routes>
         </Router>
     </>

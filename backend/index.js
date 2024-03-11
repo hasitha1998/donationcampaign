@@ -4,6 +4,9 @@ require('dotenv').config();
 const session = require('express-session');
 const db = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
+const studentRoutes = require('./routes/organizerRoutes');
+const campRoutes = require('./routes/campRoutes');
+const cors = require('cors');
 
 const app = express();
 
@@ -15,6 +18,10 @@ db.once('open', () => {
 // Middleware
 app.use(express.json());
 
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true, // enable credentials if necessary
+}));
 // Session configuration middleware
 app.use(
   session({
@@ -25,6 +32,9 @@ app.use(
 );
 // Routes
 app.use('/users', userRoutes);
+app.use('/api', cors(), studentRoutes);
+app.use('/camp', cors(), campRoutes);
+
 
 // Start the server
 const PORT = process.env.PORT || 3000;

@@ -40,13 +40,13 @@ const loginUser = async (req, res) => {
       return;
     }
 
-    // Set up a session 
+    // Set up a session (in this example, using a cookie)
     req.session.user = {
       id: user._id,
       email: user.email,
     };
 
-    // For simplicity, returning the entire user object
+    // For simplicity, returning the entire user object (you may want to exclude sensitive information)
     res.json({ message: 'Login successful', user });
   } catch (error) {
     res.status(500).json({ error: 'Error logging in' });
