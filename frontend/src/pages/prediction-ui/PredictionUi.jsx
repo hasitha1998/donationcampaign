@@ -21,7 +21,7 @@ const PredictionForm = () => {
   const [formData, setFormData] = useState({
     month: 1, // Default to January
     day_type: 'public',
-    promotion_cost: '' // Add a field for promotion cost
+    promotion_cost: 0 // Add a field for promotion cost
   });
 
   const [prediction, setPrediction] = useState(null);
@@ -51,7 +51,7 @@ const PredictionForm = () => {
     setFormData({
       month: 1,
       day_type: 'public',
-      promotion_cost: ''
+      promotion_cost: 0
     });
     setPrediction(null);
   };
@@ -95,7 +95,7 @@ const PredictionForm = () => {
           <option value="weekend">Weekend</option>
         </select>
       </div>
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <label htmlFor="promotionCost" className="block text-sm font-medium text-gray-700 mb-1">Promotion Cost:</label>
         <input
           type="number"
@@ -104,7 +104,7 @@ const PredictionForm = () => {
           value={formData.promotion_cost}
           onChange={(e) => handleFormDataChange('promotion_cost', e.target.value)}
         />
-      </div>
+      </div> */}
       <div className="flex space-x-4 ">
         <button
           className="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

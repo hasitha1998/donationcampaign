@@ -12,7 +12,7 @@ export const CampProvider = ({ children }) => {
     mobile: "",
     email: "",
     date: "",
-    slipImage: ""
+    marketingSlip: ""
   });
 
   const createCamp = async (values) => {

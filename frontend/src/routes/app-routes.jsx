@@ -9,11 +9,20 @@ import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import{
 
 
+
+
     PredictionUi,
     Home,
     Organizer,
     OrganizerSignup,
-    AllOrganizer
+    AllOrganizer,
+    DonationCamp,
+    DonorSignup,
+    DonorLogin,
+    UnderReview,
+    DonorHome,
+    
+
 }from "../pages"
 
 
@@ -25,10 +34,15 @@ const AppRoutes=() =>{
             <Routes>
                 {/* Public Routes */}
             <Route path="/" element={<Home />} />
+            <Route path="/under-review" element={<UnderReview />} />
 						<Route path="/prediction" element={<PredictionUi />} />
             <Route path="/organizer-login" element={<Organizer />} />
             <Route path="/organizer-signup" element={<OrganizerSignup />} />
+            <Route path="/donor-signup" element={<DonorSignup />} />
+            <Route path="/donor-login" element={<DonorLogin />} />
             <Route path="/organizers" element={<AllOrganizer />} />
+            <Route path="/organize-camp" element={<DonationCamp />} />
+            <Route path="/donor-home" element={<DonorHome />} />
             </Routes>
         </Router>
     </>

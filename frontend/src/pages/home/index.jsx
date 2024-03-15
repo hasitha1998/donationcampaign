@@ -1,37 +1,113 @@
-import React from 'react';
-import mainImage from '../../assets/main_image.jpg';
-import formImage from '../../assets/bloodbag.png';
+import hospitalImage from '../../assets/doctor.jpg';
+import doctorImage from '../../assets/hospital.jpg';
+import servicesImage from '../../assets/hospital.jpg';
+import Carousel from '../carousel-home';
 
 function Home() {
   return (
-    <div className="container mx-auto flex items-center justify-center">
-      {/* Left side with card view */}
-      <div className="flex flex-col justify-center items-center w-1/3">
-        <div className="bg-white p-4 ml-5 rounded-lg shadow-md mb-4 items-center justify-center">
-        <div className="flex items-center justify-center">
-  <img src={formImage} alt="Main" className="w-24 h-24 mb-5" /> 
-</div>
+    <div className="min-h-screen bg-white">
+      <div className="py-10 px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        
 
-          {/* Vision text */}
-          <div className="text-center">
-            <h2 className="text-lg font-semibold mb-2">Our Vision</h2>
-            <p className="text-gray-700 mb-10">To establish a nationally coordinated system that ensures high-quality blood services, setting a global standard for excellence and reliability.</p>
+        {/* Main Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* About Section */}
+          <div className="flex flex-col justify-center">
+            <h2 className="text-3xl font-bold text-red-500 mb-4">Join hands for a better tomorrow.</h2>
+            <p className="text-gray-600 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit tincidunt, ultrices velit at, viverra est. Integer eu tellus nec eros fermentum suscipit ut sit amet risus.</p>
+            <p className="text-gray-600">Sed blandit lorem nec turpis vehicula, ac maximus libero venenatis. Morbi fermentum felis sit amet magna fermentum, ut molestie metus mattis.</p>
           </div>
-<div className='grid grid-cols-2 md:grid-cols-2 gap-2 '>
-          {/* First red button with margin-bottom */}
-          <button className="bg-red-500 text-white px-4 py-2 rounded-lg ">As Organizer</button>
           
-          {/* Second red button */}
-          <button className="bg-red-500 text-white px-4 py-2 rounded-lg">As Donor</button>
+          {/* Image Section */}
+          <div className="w-full md:w-1/2 lg:w-3/4 ml-8">
+            <Carousel />
           </div>
         </div>
-      </div>
-      
-      {/* Right side with main image */}
-      <div className="w-2/3">
-       <img src={mainImage} alt="Main" className="w-full" /> 
-       
+
+        {/* Services Section */}
         
+
+        {/* Call to Action */}
+        
+        {/* Card Views Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+          {/* Card View 1 */}
+          <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+    <a href="#">
+        <img class="rounded-t-lg" src={servicesImage}alt="" />
+    </a>
+    <div class="p-5">
+        <a href="#">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy technology acquisitions 2021</h5>
+        </a>
+        
+        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300">
+            Read more
+             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+        </a>
+    </div>
+</div>
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+    <a href="#">
+        <img class="rounded-t-lg" src={servicesImage} alt="" />
+    </a>
+    <div class="p-5">
+        <a href="#">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy technology acquisitions 2021</h5>
+        </a>
+        
+        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300">
+            Read more
+             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+        </a>
+    </div>
+</div>
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+    <a href="#">
+        <img class="rounded-t-lg" src={servicesImage} alt="" />
+    </a>
+    <div class="p-5">
+        <a href="#">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy technology acquisitions 2021</h5>
+        </a>
+        
+        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300">
+            Read more
+             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+        </a>
+    </div>
+</div>
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+    <a href="#">
+        <img class="rounded-t-lg" src={servicesImage} alt="" />
+    </a>
+    <div class="p-5">
+        <a href="#">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy technology acquisitions 2021</h5>
+        </a>
+        
+        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300">
+            Read more
+             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+        </a>
+    </div>
+</div>
+
+
+
+          
+
+        </div>
+
       </div>
     </div>
   );

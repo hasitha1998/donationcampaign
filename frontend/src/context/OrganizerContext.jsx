@@ -69,7 +69,13 @@ export const OrganizerProvider = ({ children }) => {
   };
 
   return (
-    <OrganizerContext.Provider value={{ organizers, submitOrganizer, getAllOrganizers, getOneOrganizer, deleteOrganizer,organizer,setOrganizer }}>
+    <OrganizerContext.Provider value={{ organizers,
+     submitOrganizer,
+      getAllOrganizers,
+       getOneOrganizer,
+        deleteOrganizer,
+        organizer,
+        setOrganizer }}>
       {children}
     </OrganizerContext.Provider>
   );

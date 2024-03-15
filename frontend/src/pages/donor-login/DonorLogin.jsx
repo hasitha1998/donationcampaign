@@ -1,16 +1,16 @@
-// Organizer.jsx
-
 import React, { useState } from 'react';
-import mainImage from '../../assets/main_image.jpg';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import formImage from '../../assets/bloodman.jpg'; // Import the background image for the login page
 import Carousel from '../carousel';
 
-function Organizer() {
+function Donor() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate(); // Initialize useHistory hook
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = {};
 
@@ -29,8 +29,31 @@ function Organizer() {
 
     // If there are no errors, submit the form
     if (Object.keys(errors).length === 0) {
-      // Submit form
-      console.log('Form submitted successfully');
+      try {
+        const response = await axios.post('http://localhost:3000/donor/login', {
+          email,
+          password
+        });
+
+        // Check account status
+        const statusResponse = await axios.post('http://localhost:3000/donor/status', {
+          email
+        });
+
+        if (statusResponse.data.status === 'pending') {
+          // Redirect to under review page if account status is pending
+          navigate('/under-review');
+        } else {
+          // Redirect to home page if account status is active
+          navigate('/home');
+        }
+
+        console.log('Login successful:', response.data);
+        // Handle successful login (redirect, show message, etc.)
+      } catch (error) {
+        console.error('Error logging in:', error.response.data);
+        // Handle login error (show error message, clear form fields, etc.)
+      }
     }
   };
 
@@ -72,4 +95,4 @@ function Organizer() {
   );
 }
 
-export default Organizer;
+export default Donor;

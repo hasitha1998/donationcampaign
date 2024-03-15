@@ -6,6 +6,7 @@ const db = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
 const studentRoutes = require('./routes/organizerRoutes');
 const campRoutes = require('./routes/campRoutes');
+const donorRoutes = require('./routes/DonorRoutes');
 const cors = require('cors');
 
 const app = express();
@@ -34,6 +35,7 @@ app.use(
 app.use('/users', userRoutes);
 app.use('/api', cors(), studentRoutes);
 app.use('/camp', cors(), campRoutes);
+app.use('/donor', cors(), donorRoutes);
 
 
 // Start the server
