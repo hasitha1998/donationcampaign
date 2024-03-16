@@ -4,19 +4,19 @@ const organizerController = require('../controller/organizerController');
 const router = express.Router();
 
 // Student registration route
-router.post('/register', organizerController.registerStudent);
+router.post('/register', organizerController.registerBloodCampOrg);
 
 // Student login route
-router.post('/login', organizerController.loginStudent);
+router.post('/login', organizerController.loginOrganizer);
 
 // Route to get all students
-router.get('/organizers', organizerController.getAllStudents);
+router.get('/organizers', organizerController.getAllOrganizers);
 
 // Route to get one student by ID
-router.get('/:id', organizerController.getOneStudent);
+router.get('/:id', organizerController.getOneOrganizer);
 
 // Route to delete a student by ID
-router.delete('/:id', organizerController.deleteStudent);
+router.delete('/:id', organizerController.deleteOrganizer);
 
 router.put('/organizers/:id', organizerController.updateOrganizerStatus);
 

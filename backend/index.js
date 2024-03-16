@@ -1,10 +1,11 @@
 
+
 const express = require('express');
 require('dotenv').config();
 const session = require('express-session');
 const db = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
-const studentRoutes = require('./routes/organizerRoutes');
+const organizerRoutes = require('./routes/organizerRoutes');
 const campRoutes = require('./routes/campRoutes');
 const donorRoutes = require('./routes/DonorRoutes');
 const cors = require('cors');
@@ -26,14 +27,14 @@ app.use(cors({
 // Session configuration middleware
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || 'secret', 
+    secret: process.env.SESSION_SECRET, 
     resave: false, // Do not resave the session if it hasn't been modified
     saveUninitialized: true, // Save uninitialized sessions
   })
 );
 // Routes
 app.use('/users', userRoutes);
-app.use('/api', cors(), studentRoutes);
+app.use('/organizer', cors(), organizerRoutes);
 app.use('/camp', cors(), campRoutes);
 app.use('/donor', cors(), donorRoutes);
 

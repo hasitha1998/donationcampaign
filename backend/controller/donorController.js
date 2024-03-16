@@ -1,5 +1,6 @@
 // controller/studentController.js
 const Donor = require('../models/donorModel');
+const jwt = require('jsonwebtoken');
 
 const registerDonor = async (req, res) => {
   try {
@@ -43,7 +44,7 @@ const loginDonor = async (req, res) => {
     const donor = await Donor.findOne({ email });
 
     if (!donor) {
-      res.status(404).json({ error: 'Donor not found ' });
+      res.status(404).json({ error: 'Donor not found' });
       return;
     }
 
@@ -54,10 +55,12 @@ const loginDonor = async (req, res) => {
       return;
     }
 
-    req.session.donor = {
-      id: donor._id,
-      email: donor.email,
-    };
+    req.session.donor = donor._id;
+    // Generate JWT token
+    const token = jwt.sign({ email: donor.email, _id: donor._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    // Set JWT token as a cookie
+    res.cookie('token', token, { httpOnly: true });
 
     res.json({ message: 'Login successful', donor });
   } catch (error) {

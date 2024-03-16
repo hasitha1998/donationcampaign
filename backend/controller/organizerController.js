@@ -1,14 +1,13 @@
 // controller/studentController.js
-const Student = require('../models/organizerModel');
+const BloodCampOrganizer = require('../models/organizerModel');
+const jwt = require('jsonwebtoken');
 
-const registerStudent = async (req, res) => {
+const registerBloodCampOrg = async (req, res) => {
   try {
-    const { firstName, lastName, mobile, email, password,imageFront,imageBack,accountStatus } = req.body;
+    const { firstName, lastName, mobile, email, password, imageFront, imageBack, accountStatus } = req.body;
 
-    
-
-    // Create a new student object with file paths
-    const newStudent = new Student({
+    // Create a new BloodCampOrganizer object with file paths
+    const newOrganizer = new BloodCampOrganizer({
       firstName,
       lastName,
       mobile,
@@ -19,126 +18,126 @@ const registerStudent = async (req, res) => {
       accountStatus
     });
 
-    // Save the student object to MongoDB
-    await newStudent.save();
+    // Save the BloodCampOrganizer object to MongoDB
+    await newOrganizer.save();
 
-    // Respond with the registered student object and file paths
+    // Respond with the registered BloodCampOrganizer object and file paths
     res.json({
-      message: 'Student registered successfully',
-      student: {
+      message: 'BloodCampOrganizer registered successfully',
+      organizer: {
         firstName,
         lastName,
         mobile,
         email,
         password,
-        _id: newStudent._id,
+        _id: newOrganizer._id,
         imageFront,
         imageBack
-
       },
-      
     });
   } catch (error) {
-    console.error('Error registering student:', error);
-    res.status(500).json({ error: 'Error registering student' });
+    console.error('Error registering BloodCampOrganizer:', error);
+    res.status(500).json({ error: 'Error registering BloodCampOrganizer' });
   }
 };
 
-const loginStudent = async (req, res) => {
+const loginOrganizer = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const student = await Student.findOne({ email });
+    const organizer = await BloodCampOrganizer.findOne({ email });
 
-    if (!student) {
-      res.status(404).json({ error: 'Student not found ' });
+    if (!organizer) {
+      res.status(404).json({ error: 'BloodCampOrganizer not found' });
       return;
     }
 
-    const isPasswordValid = await student.comparePassword(password);
+    const isPasswordValid = await organizer.comparePassword(password);
 
     if (!isPasswordValid) {
       res.status(401).json({ error: 'Invalid password' });
       return;
     }
 
-    req.session.student = {
-      id: student._id,
-      email: student.email,
-    };
+    req.session.organizer = organizer._id;
+    // Generate JWT token
+    const token = jwt.sign({ email: organizer.email, _id: organizer._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    res.json({ message: 'Login successful', student });
+    res.json({ message: 'Login successful', token });
   } catch (error) {
+    console.error('Error logging in:', error);
     res.status(500).json({ error: 'Error logging in' });
   }
 };
 
-// Function to get all students
-const getAllStudents = async (req, res) => {
+// Function to get all BloodCampOrganizers
+const getAllOrganizers = async (req, res) => {
   try {
-    const students = await Student.find();
-    res.json({ students });
+    const organizers = await BloodCampOrganizer.find();
+    res.json({ organizers });
   } catch (error) {
-    console.error('Error fetching students:', error);
-    res.status(500).json({ error: 'Error fetching students' });
+    console.error('Error fetching BloodCampOrganizers:', error);
+    res.status(500).json({ error: 'Error fetching BloodCampOrganizers' });
   }
 };
 
-// Function to get one student by ID
-const getOneStudent = async (req, res) => {
+// Function to get one BloodCampOrganizer by ID
+const getOneOrganizer = async (req, res) => {
   try {
     const { id } = req.params;
-    const student = await Student.findById(id);
-    if (!student) {
-      res.status(404).json({ error: 'Student not found' });
+    const organizer = await BloodCampOrganizer.findById(id);
+    if (!organizer) {
+      res.status(404).json({ error: 'BloodCampOrganizer not found' });
       return;
     }
-    res.json({ student });
+    res.json({ organizer });
   } catch (error) {
-    console.error('Error fetching student:', error);
-    res.status(500).json({ error: 'Error fetching student' });
+    console.error('Error fetching BloodCampOrganizer:', error);
+    res.status(500).json({ error: 'Error fetching BloodCampOrganizer' });
   }
 };
 
-// Function to delete a student by ID
-const deleteStudent = async (req, res) => {
+// Function to delete a BloodCampOrganizer by ID
+const deleteOrganizer = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedStudent = await Student.findByIdAndDelete(id);
-    if (!deletedStudent) {
-      res.status(404).json({ error: 'Student not found' });
+    const deletedOrganizer = await BloodCampOrganizer.findByIdAndDelete(id);
+    if (!deletedOrganizer) {
+      res.status(404).json({ error: 'BloodCampOrganizer not found' });
       return;
     }
-    res.json({ message: 'Student deleted successfully' });
+    res.json({ message: 'BloodCampOrganizer deleted successfully' });
   } catch (error) {
-    console.error('Error deleting student:', error);
-    res.status(500).json({ error: 'Error deleting student' });
+    console.error('Error deleting BloodCampOrganizer:', error);
+    res.status(500).json({ error: 'Error deleting BloodCampOrganizer' });
   }
 };
+
 const updateOrganizerStatus = async (req, res) => {
   try {
     const { id } = req.params;
     const { accountStatus } = req.body;
 
     // Find the organizer by ID and update its account status
-    const updatedOrganizer = await Student.findByIdAndUpdate(id, { accountStatus }, { new: true });
+    const updatedOrganizer = await BloodCampOrganizer.findByIdAndUpdate(id, { accountStatus }, { new: true });
 
     if (!updatedOrganizer) {
-      res.status(404).json({ error: 'Organizer not found' });
+      res.status(404).json({ error: 'BloodCampOrganizer not found' });
       return;
     }
 
-    res.json({ message: 'Organizer status updated successfully', organizer: updatedOrganizer });
+    res.json({ message: 'BloodCampOrganizer status updated successfully', organizer: updatedOrganizer });
   } catch (error) {
     console.error('Error updating organizer status:', error);
     res.status(500).json({ error: 'Error updating organizer status' });
   }
 };
+
 module.exports = {
-  registerStudent,
-  loginStudent,
-  getAllStudents,
-  getOneStudent,
-  deleteStudent,
+  registerBloodCampOrg,
+  loginOrganizer,
+  getAllOrganizers,
+  getOneOrganizer,
+  deleteOrganizer,
   updateOrganizerStatus
 };

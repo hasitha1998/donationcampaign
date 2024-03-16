@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const studentSchema = new mongoose.Schema({
+const organizerSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   mobile: String,
@@ -23,7 +23,7 @@ const studentSchema = new mongoose.Schema({
 });
 
 // Hash the password before saving to the database
-studentSchema.pre('save', async function (next) {
+organizerSchema.pre('save', async function (next) {
   try {
     // Check if password is modified or new, and ensure it's not empty
     if (this.isModified('password') || this.isNew) {
@@ -42,10 +42,10 @@ studentSchema.pre('save', async function (next) {
 });
 
 // Method to compare hashed password during login
-studentSchema.methods.comparePassword = async function (candidatePassword) {
+organizerSchema.methods.comparePassword = async function (candidatePassword) {
   return bcrypt.compare(candidatePassword, this.password);
 };
 
-const Student = mongoose.model('Organizer', studentSchema);
+const Organizer = mongoose.model('Organizer', organizerSchema);
 
-module.exports = Student;
+module.exports = Organizer;
